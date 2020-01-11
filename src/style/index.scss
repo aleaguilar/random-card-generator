@@ -1,16 +1,66 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
-/* 
-    body{
-        background: #BDBDBD;
-    }
-    
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+body {
+  background: green;
+}
 
-*/
+.card {
+  margin: auto;
+  height: 550px;
+  width: 350px;
+  border-radius: 10px;
+  &::before {
+    //The ::before selector inserts something before the content of each selected element(s). This means it puts it in the very first pixel of the element, but inside it. Then with position absolute top right, etc, the injected content is moved around. Applies the same logic o :after
+    //https://css-tricks.com/the-sass-ampersand/ in scss he & implies using he parent selector.
+    content: "\2665"; //because instead of html classes we're using before:after, then the content must be inputed via css
+    position: absolute; //https://www.w3schools.com/cssref/pr_class_display.asp
+    top: 20px; //https://www.w3schools.com/cssref/pr_pos_top.asp
+    left: 30px; //these 2 properties must be combined with the position
+    font-size: 90px;
+    font-family: serif;
+  }
+  &::after {
+    position: absolute;
+    content: "\2665";
+    bottom: 20px; //https://www.w3schools.com/cssref/pr_pos_top.asp
+    right: 30px; //these 2 properties must be combined with the position
+    font-size: 90px;
+    font-family: serif;
+  }
+  //https://www.w3schools.com/cssref/pr_gen_content.asp
+  //Using before or after pseudo elements I can inject content, in this case the poker suits are built-in and only have to input the css code from the reference sheet
+  &.spades:before,
+  &.spades:after {
+    content: "\2660";
+  }
+
+  &.clubs:before,
+  &.clubs:after {
+    content: "\2663";
+  }
+
+  &.hearts:before,
+  &.hearts:after {
+    content: "\2665";
+    color: red;
+  }
+
+  &.diams:before,
+  &.diams:after {
+    content: "\2666";
+    color: red;
+  }
+}
+
+.number {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(
+    -50%
+  ); //https://www.w3schools.com/cssref/css3_pr_transform.asp
+  left: 40%;
+  font-size: 150px;
+  font-family: serif;
+}
